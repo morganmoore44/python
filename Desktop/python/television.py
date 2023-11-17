@@ -26,43 +26,62 @@ class Television:
         '''
         Method that sets muted variable to opposite of current value
         '''
-        if self.__muted == False:
-            self.__muted = True
-        else:
-            self.__muted = False
+        if self.__status == True:
+            if self.__muted == False:
+                self.__muted = True
+            else:
+                self.__muted = False
 
     def channel_up(self) -> None:
         '''
         Method that increases channel by one unless at maximum channel, then will go down to minimum channel
         '''
-        if self.__channel == self.MAX_CHANNEL:
-            self.__channel = self.MIN_CHANNEL
-        else:
-            self.__channel += 1
+        if self.__status == True:
+            if self.__channel == self.MAX_CHANNEL:
+                self.__channel = self.MIN_CHANNEL
+            else:
+                self.__channel += 1
     def channel_down(self) -> None:
         '''
         Method that decreases channel by one unless at minimum channel, then will go up to maximum channel
         '''
-        if self.__channel == self.MIN_CHANNEL:
-            self.__channel = self.MAX_CHANNEL
-        else:
-            self.__channel -= 1
+        if self.__status == True:
+            if self.__channel == self.MIN_CHANNEL:
+                self.__channel = self.MAX_CHANNEL
+            else:
+                self.__channel -= 1
     def volume_up(self) -> None:
         '''
         Method that increases volume by one unless at maximum volume, then will stay at maximum volume
         '''
-        if self.__volume != self.MAX_VOLUME:
-            self.__volume += 1
-        else:
-            self.__volume = self.MAX_VOLUME
+        if self.__status == True:
+            if self.__muted != True:
+                if self.__volume != self.MAX_VOLUME:
+                    self.__volume += 1
+                else:
+                    self.__volume = self.MAX_VOLUME
+            else:
+                self.__muted = False
+                if self.__volume != self.MAX_VOLUME:
+                    self.__volume += 1
+                else:
+                    self.__volume = self.MAX_VOLUME
     def volume_down(self) -> None:
         '''
         Method that decreases volume by one unless at minimum volume, then will stay at minimum volume
         '''
-        if self.__volume != self.MIN_VOLUME:
-            self.__volume -= 1
-        else:
-            self.__volume = self.MIN_VOLUME
+        if self.__status == True:
+            if self.__muted != True:
+                if self.__volume != self.MIN_VOLUME:
+                    self.__volume -= 1
+                else:
+                    self.__volume = self.MIN_VOLUME
+            else:
+                self.__muted = False
+                if self.__volume != self.MIN_VOLUME:
+                    self.__volume -= 1
+                else:
+                    self.__volume = self.MIN_VOLUME
 
     def __str__(self) -> str:
         '''
